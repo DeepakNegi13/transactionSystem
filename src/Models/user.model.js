@@ -54,5 +54,14 @@ userSchema.pre("save", async function (next) {
 	}
 });
 
+
+/**
+ * - Compare the provided password with the stored hashed password
+ * - api/auth/login
+ */
+userSchema.methods.comparePassword = async function (Password) {
+	return await bcrypt.compare(Password, this.password);
+};
+
 const Account = mongoose.model("Account", userSchema);
 module.exports = Account;
