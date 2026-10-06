@@ -3,7 +3,7 @@ const user = require("./user.model");
 const bcrypt = require("bcryptjs");
 const accountSchema = mongoose.Schema(
 	{
-		AccountHolder: {
+		user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "user",
             required: [true,"Account must have associated to a user"],
@@ -26,10 +26,6 @@ const accountSchema = mongoose.Schema(
             trim: true,
             select: false,
         },
-		balance: {
-			type: Number,
-			default: 0,
-		},
 	},
 	{
 		timestamps: true,

@@ -3,14 +3,13 @@ const sendEmail = require("../services/email.services");
 
 
 async function createAccount(req, res) {
-    const { AccountHolder, PIN, balance } = req.body;
+    const {user, PIN} = req.body;
     try {
         const newAccount = await account.create({
-            AccountHolder,
+            user,
             // Generate a random 10-digit account number 
             AccountNumber: Math.floor(1000000000 + Math.random() * 9000000000), 
-             PIN,   
-            balance,
+            PIN,   
         });
         console.log("Account created successfully:", newAccount);
         res.status(201).json({
