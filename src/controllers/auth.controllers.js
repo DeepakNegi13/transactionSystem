@@ -9,7 +9,7 @@ const sendEmail = require("../services/email.services");
 async function register(req, res) {
 	const { name, userID, email, password } = req.body;
 	try {
-		const newAccount = await user.create({
+		const newUser = await user.create({
 			name,
 			userID,
 			email,
@@ -17,7 +17,7 @@ async function register(req, res) {
 		});
 		const token = jwt.sign(
 			{
-				id: newAccount._id,
+				id: newUser._id,
 			},
 			process.env.JWT_SECRET,
 		);
@@ -25,7 +25,7 @@ async function register(req, res) {
 
 		res.status(201).json({
 			status: "success",
-			data: newAccount,
+			data: newUser,
 			token,
 		});
 

@@ -14,7 +14,6 @@ const userSchema = mongoose.Schema(
 			required: [true, "name is incomplete"],
 			unique: [true, "please fill a unique user ID"],
 		},
-
 		email: {
 			type: String,
 			required: [true, "email is necessary to create user account"],
@@ -63,5 +62,5 @@ userSchema.methods.comparePassword = async function (Password) {
 	return await bcrypt.compare(Password, this.password);
 };
 
-const Account = mongoose.model("Account", userSchema);
-module.exports = Account;
+const user = mongoose.model("user", userSchema);
+module.exports = user;
